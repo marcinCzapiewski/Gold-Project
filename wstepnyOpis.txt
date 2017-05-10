@@ -1,0 +1,28 @@
+Gra w statki, zrobiona na UWP - C#/XAML
+Gra ma za zadanie jak najwierniej oddaæ papierow¹ wersjê gry w statki:
+* gracze ustawiaj¹ statki (4x1, 3x2, 2x3, 1x4) na planszy (10x10),
+a nastêpetnie rozpoczyna siê gra, ktora polega na wyeliminowaniu 
+statków przeciwnika (system trafien i pude³) - wygrywa ten, 
+który dokona tego jako pierwszy.
+* zaimplementujemy ten model poprzez podzielenie gry na poszczególne fazy,
+tak aby gracz 1 nie widzia³ akcji gracza 2 i odwrotnie. 
+
+SZCZEGÓ£Y (wdro¿enie modelu MVC):
+a) Czêœæ wizualna, interfejs w WPFie:
+-menu g³ówne,
+-przyciski,
+-plansza,
+-statki,
+
+b) Czêœæ backgroundowa:
+-obs³uga ekranów dotykowych jak i myszki,
+-stworzenie planszy o odpowiednim rozmiarze,
+-klasa statek i klasy po niej dziedzicz¹ce,
+-sprawdzenie poprawnego rozmieszczenia statków,
+-sprawdzanie trafieñ b¹dŸ pude³,
+-okreœlenie i sprawdzenie warunków koñca gry
+
+Na podpunkcie:
+a) skupi¹ siê Wojciech Baczyñski, Marcin Czapiewski
+b) skupi siê Kasper Cisewski
+
