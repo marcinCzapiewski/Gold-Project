@@ -7,7 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="LightBlue">
+        <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Battleships Game" VerticalAlignment="Top" Margin="0,100,0,0" FontSize="30%"
+                   TextAlignment="Center" Width="795" FontWeight="ExtraBold"/>
+        <Button Content="Start" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Height="100" Width="400" Tapped="StartGame" FontSize="30%"/>
+        <Button Content="Exit" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Height="100" Width="400" Tapped="Exit" FontSize="45"/>
 
     </Grid>
 </Page>
