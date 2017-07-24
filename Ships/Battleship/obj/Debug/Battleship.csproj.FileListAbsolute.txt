@@ -98,3 +98,5 @@ C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\Battleship.Pr
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\Battleship.csproj.GenerateResource.Cache
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\Battleship.exe
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\Battleship.pdb
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\secondSetup.g.cs
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\secondSetup.baml
