@@ -21,6 +21,7 @@ namespace Battleship
         public event EventHandler play;
         
         enum Orientation { VERTICAL, HORIZONTAL};
+        enum Marker {Water, Alive};
         Orientation orientation = Orientation.HORIZONTAL;
         SolidColorBrush unselected = new SolidColorBrush(Colors.Black);
         SolidColorBrush selected = new SolidColorBrush(Colors.Green);
@@ -95,7 +96,12 @@ namespace Battleship
             {
                 return;
             }
-            play(this,e);
+             play(this,e);
+            //Window w = new Window();
+            //w.Content = new Setup();
+            //w.Show();
+
+
         }
 
       
@@ -184,6 +190,7 @@ namespace Battleship
                     for (int j = 0; j < size * 10; j += 10)
                     {
                         playerGrid[index + j].Tag = ship;
+                        playerGrid[index + j].Tag = Marker.Alive; // dodane
                         playerGrid[index + j].Background = shipColors[i];
                     }
                 }
@@ -202,8 +209,35 @@ namespace Battleship
             }
         }
 
-       
-       
-       
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        //private bool checkShips(int index)
+        //{
+        //    Marker[,] tab = new Marker[13, 13];
+        //    for (int i = 0; i < 13; i++)
+        //        for (int j = 0; j < 13; j++)
+        //        {
+        //            tab[i, j] = Marker.Water;
+        //        }
+        //    for (int i = 3; i < 13; i++)
+        //        for (int j = 3; j < 13; j++)
+        //        {
+        //            if (tab[i - 1, j - 1] || tab[i - 1, j + 1] || tab[i + 1, j - 1] || tab[i + 1, j + 1] == Marker.Alive;//playerGrid[index].Tag.Equals("water")) ; // funkcja sprawdzajaca rogi obiektu
+        //            {
+        //                return false;
+        //            }
+        //            else
+        //            {
+        //                return true;
+        //            }
+
+        //        }
+        //}
+
+
+
     }
 }

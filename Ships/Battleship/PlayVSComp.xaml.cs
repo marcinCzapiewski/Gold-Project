@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace Battleship
 {
- 
+
     public partial class PlayVSComp : UserControl
     {
         public event EventHandler replay;
@@ -33,7 +33,7 @@ namespace Battleship
         int counterComp = 20;
 
 
-   
+
 
         public PlayVSComp(Difficulty difficulty, Grid[] playerGrid, string playerName)
         {
@@ -46,7 +46,7 @@ namespace Battleship
 
         }
 
-        
+
         private void initiateSetup(Grid[] userGrid)
         {
             compGrid = new Grid[100];
@@ -67,14 +67,14 @@ namespace Battleship
             btnAttack.IsEnabled = true;
         }
 
-     
+
         private void setupCompGrid()
         {
             Random random = new Random();
             int[] shipSizes = new int[] { 1, 1, 1, 1, 2, 2, 2, 3, 3, 4 };
             string[] ships = new string[]   { "Firstdestroyer","Seconddestroyer", "Thirddestroyer", "Fourthdestroyer",
                 "Firstcruiser", "Secondcruiser", "Thirdcruiser", "Firstsubmarine", "Secondsubmarine", "battleship" };
-        int size, index;
+            int size, index;
             string ship;
             Orientation orientation;
             bool unavailableIndex = true;
@@ -115,7 +115,7 @@ namespace Battleship
                     for (int j = 0; j < size; j++)
                     {
                         compGrid[index + j].Tag = ship;
-                        
+
                     }
                 }
                 else
@@ -174,7 +174,7 @@ namespace Battleship
                 case "hit":
                     Console.WriteLine("User hit a miss/hit");
                     return;
-     
+
             }
             square.Tag = "hit";
             counterComp--;
@@ -187,31 +187,31 @@ namespace Battleship
 
 
 
-    
+
 
         private void compTurn()
         {
-          
+
             hunterMode();
             turnCount++;
             checkComputerWin();
         }
         private void checkPlayerWin()
         {
-            if (counterComp==0)
-            { 
+            if (counterComp == 0)
+            {
                 MessageBox.Show("You win!");
                 disableGrids();
                 displayHighScores(saveHighScores(true));
             }
         }
 
-        
+
 
         private void checkComputerWin()
         {
-            if (counterPlayer==0)
-            { 
+            if (counterPlayer == 0)
+            {
                 MessageBox.Show("You lose!");
                 disableGrids();
                 displayHighScores(saveHighScores(false));
@@ -225,7 +225,7 @@ namespace Battleship
                 {
                     element.Background = new SolidColorBrush(Colors.LightGray);
                 }
-               
+
                 element.IsEnabled = false;
             }
             foreach (var element in playerGrid)
@@ -340,10 +340,10 @@ namespace Battleship
             txtBoxY.Text = button.Content.ToString();
         }
 
-      
-      
 
-   
+
+
+
         private void hunterMode()
         {
             int position;
@@ -358,7 +358,7 @@ namespace Battleship
 
         }
 
-      
+
         private void simpleMode(int position)
         {
             if (!(playerGrid[position].Tag.Equals("water")))
@@ -375,9 +375,9 @@ namespace Battleship
             }
         }
 
-       
-       
-      
+
+
+
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             string path = @"../../scores.txt";
@@ -390,10 +390,10 @@ namespace Battleship
             txtBlockLosses.Text = "LOSSES";
         }
 
-   
-       
 
-        
+
+
+
         private List<string> saveHighScores(bool playerWins)
         {
             String filename = @"../../scores.txt";
@@ -441,7 +441,7 @@ namespace Battleship
             File.WriteAllLines(filename, players);
             return players;
         }
-  
+
         private int binarySearch(string[] players, string value)
         {
 
@@ -468,7 +468,7 @@ namespace Battleship
             return -(low + 1);
         }
 
-     
+
         private List<string> loadHighScores()
         {
             String filename = @"../../scores.txt";
@@ -494,7 +494,7 @@ namespace Battleship
             return players;
         }
 
-      
+
         private void displayHighScores(List<string> players)
         {
             string[] player;
@@ -514,5 +514,6 @@ namespace Battleship
             txtBlockLosses.Text = losses;
 
         }
+       
     }
 }

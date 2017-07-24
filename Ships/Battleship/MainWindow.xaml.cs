@@ -26,6 +26,7 @@ namespace Battleship
         private ShipPlacement shipPlacement;
         private PlayVSComp playVSComp;
         private MediaPlayer mediaPlayer = new MediaPlayer();
+        private secondSetup secondSetup;
 
         public MainWindow()
         {
@@ -49,6 +50,7 @@ namespace Battleship
             grid.Children.Add(setup);
             
             setup.play += new EventHandler(shipSetup);
+            setup.playMulti += new EventHandler(secondSetupShip);
         }
 
     
@@ -66,6 +68,7 @@ namespace Battleship
             grid.Children.Add(shipPlacement);
 
             shipPlacement.play += new EventHandler(playGame);
+            
         }
 
        
@@ -84,6 +87,27 @@ namespace Battleship
 
             grid.Children.Add(playVSComp);
             playVSComp.replay += new EventHandler(replayGame);
+
+        }
+
+        private void secondSetupShip(object sender, EventArgs e)
+        {
+            grid.Children.Clear();
+
+            this.MinHeight = 300;
+            this.MinWidth = 330;
+            this.Height = 300;
+            this.Width = 330;
+
+            
+            secondSetup = new secondSetup();
+
+            grid.Children.Add(secondSetup);
+
+            
+
+            secondSetup.playTwo += new EventHandler(shipSetup); 
+          
 
         }
 

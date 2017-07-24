@@ -16,11 +16,13 @@ using System.Windows.Shapes;
 namespace Battleship
 {
 
-    public enum Difficulty { Simple, Intelligent }
+    public enum Difficulty { Simple }
 
     public partial class Setup : UserControl
     {
+
         public event EventHandler play;
+        public event EventHandler playMulti;
         public string name;
         public Difficulty difficulty = Difficulty.Simple;
 
@@ -42,14 +44,39 @@ namespace Battleship
             }
         }
 
-        private void rbtnVsComputer_Click(object sender, RoutedEventArgs e)
+
+        private void buttonStartMultiplayer_Click(object sender, RoutedEventArgs e)
         {
-            difficulty = Difficulty.Simple;
+            Setup setup = new Setup();
+            name = txtboxName.Text;
+            if (name == "")
+            {
+                MessageBox.Show("You must enter a name", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                playMulti(this, e);
+                //playMulti(this, new RoutedEventArgs());
+
+
+              //  NavigationController.NavigateTo(new ShipPlacement());
+
+                //ShipPlacement p = new ShipPlacement();
+                //var np = new ShipPlacement();
+               
+
+
+                //Content = p.Content;
+                //this.gridMain.Children.Add(p);
+
+                //Window w = new Window();
+                //w.Content = new ShipPlacement();
+                //w.Show();
+                //NavigationService.GetNavigationService(this).Navigate(p);
+            }
         }
 
-        private void rbtnMulti_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
+  
 }
