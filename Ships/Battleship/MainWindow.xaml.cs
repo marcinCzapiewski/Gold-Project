@@ -100,7 +100,7 @@ namespace Battleship
             this.Width = 330;
 
             
-            secondSetup = new secondSetup();
+            secondSetup = new secondSetup(setup.name);
 
             grid.Children.Add(secondSetup);
 

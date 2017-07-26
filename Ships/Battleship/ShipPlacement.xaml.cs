@@ -214,28 +214,39 @@ namespace Battleship
             throw new NotImplementedException();
         }
 
-        //private bool checkShips(int index)
-        //{
-        //    Marker[,] tab = new Marker[13, 13];
-        //    for (int i = 0; i < 13; i++)
-        //        for (int j = 0; j < 13; j++)
-        //        {
-        //            tab[i, j] = Marker.Water;
-        //        }
-        //    for (int i = 3; i < 13; i++)
-        //        for (int j = 3; j < 13; j++)
-        //        {
-        //            if (tab[i - 1, j - 1] || tab[i - 1, j + 1] || tab[i + 1, j - 1] || tab[i + 1, j + 1] == Marker.Alive;//playerGrid[index].Tag.Equals("water")) ; // funkcja sprawdzajaca rogi obiektu
-        //            {
-        //                return false;
-        //            }
-        //            else
-        //            {
-        //                return true;
-        //            }
+        private bool checkShips(int index)
+        {
+            Grid[,]tab = new Grid[13, 13];
+            
 
-        //        }
-        //}
+            foreach (var element in tab)
+            {
+                element.Tag = "water";
+                element.Background = new SolidColorBrush(Colors.White);
+            }
+            // tu powinno byc podmienienie zeby tab = playerGrid, tylko ze 
+            //trzba zamienic playerGrid tablice jednowymiarowa na tablice wielowymiarowa 10x10
+            // i zeby to bylo w
+
+            for (int i = 3; i < 13; i++)
+                for (int j = 3; j < 13; j++)
+                {
+                    tab[i, j] = playerGrid[i];
+                }
+            for (int i = 3; i < 13; i++)
+                for (int j = 3; j < 13; j++)
+                {
+                    if ((string)tab[i - 1, j - 1].Tag && (string)tab[i - 1, j + 1].Tag && (string)tab[i + 1, j - 1].Tag && (string)tab[i + 1, j + 1].Tag == "water";//playerGrid[index].Tag.Equals("water")) ; // funkcja sprawdzajaca rogi obiektu
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
+                }
+        }
 
 
 

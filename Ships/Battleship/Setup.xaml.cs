@@ -56,23 +56,7 @@ namespace Battleship
             else
             {
                 playMulti(this, e);
-                //playMulti(this, new RoutedEventArgs());
-
-
-              //  NavigationController.NavigateTo(new ShipPlacement());
-
-                //ShipPlacement p = new ShipPlacement();
-                //var np = new ShipPlacement();
                
-
-
-                //Content = p.Content;
-                //this.gridMain.Children.Add(p);
-
-                //Window w = new Window();
-                //w.Content = new ShipPlacement();
-                //w.Show();
-                //NavigationService.GetNavigationService(this).Navigate(p);
             }
         }
 

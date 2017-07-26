@@ -25,10 +25,11 @@ namespace Battleship
     {
         public event EventHandler playTwo;
         public string namePlayerTwo;
-
-        public secondSetup()
+        public string namePlayerOne;
+        public secondSetup(string namePlayerOne)
         {
             InitializeComponent();
+            this.namePlayerOne = namePlayerOne;
         }
 
         private void buttonNextPage_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,10 @@ namespace Battleship
             if (namePlayerTwo == "")
             {
                 MessageBox.Show("You must enter a name", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if(namePlayerTwo == namePlayerOne)
+            {
+                MessageBox.Show("Your name must be different than the first player's name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
