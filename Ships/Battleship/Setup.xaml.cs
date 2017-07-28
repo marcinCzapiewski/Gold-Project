@@ -44,7 +44,6 @@ namespace Battleship
             }
         }
 
-
         private void buttonStartMultiplayer_Click(object sender, RoutedEventArgs e)
         {
             Setup setup = new Setup();
@@ -59,8 +58,5 @@ namespace Battleship
                
             }
         }
-
-       
-    }
-  
+    } 
 }

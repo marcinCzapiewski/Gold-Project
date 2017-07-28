@@ -100,3 +100,9 @@ C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\Battleship.ex
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\Battleship.pdb
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\secondSetup.g.cs
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\secondSetup.baml
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\windowPlayerOne.g.cs
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\windowPlayerTwo.g.cs
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\windowPlayerOne.baml
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\windowPlayerTwo.baml
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\playerVSPlayer.g.cs
+C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\obj\Debug\playerVSPlayer.baml

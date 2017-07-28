@@ -21,7 +21,7 @@ namespace Battleship
         public event EventHandler play;
         
         enum Orientation { VERTICAL, HORIZONTAL};
-        enum Marker {Water, Alive};
+       
         Orientation orientation = Orientation.HORIZONTAL;
         SolidColorBrush unselected = new SolidColorBrush(Colors.Black);
         SolidColorBrush selected = new SolidColorBrush(Colors.Green);
@@ -57,7 +57,6 @@ namespace Battleship
             reset();
             
         }
-
   
         private void reset()
         {
@@ -86,10 +85,6 @@ namespace Battleship
             lastShip = null;
         }
 
-   
-     
-       
-      
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             if (numShipsPlaced != 10)
@@ -97,19 +92,7 @@ namespace Battleship
                 return;
             }
              play(this,e);
-            //Window w = new Window();
-            //w.Content = new Setup();
-            //w.Show();
-
-
         }
-
-      
-        private void btnReset_Click(object sender, RoutedEventArgs e)
-        {
-            reset();
-        }
-
    
         private void btnSetup_Click(object sender, RoutedEventArgs e)
         {
@@ -125,8 +108,7 @@ namespace Battleship
             
 
             for (int i = 0; i < shipSizes.Length; i++)
-            {
-                
+            {               
                 size = shipSizes[i];
                 ship = shipNames[i];
                 unavailableIndex = true;
@@ -148,7 +130,8 @@ namespace Battleship
                         {
                             index = random.Next(0, 100);
                         }
-
+                        
+                        if(checkShips(index)==true)
                         for (int j = 0; j < size; j++)
                         {
                             if (index + j > 99 || !playerGrid[index + j].Tag.Equals("water"))
@@ -176,8 +159,8 @@ namespace Battleship
                         {
                             index = random.Next(0, 100);
                         }
-
-                        for (int j = 0; j < size * 10; j += 10)
+                        if (checkShips(index) == true)
+                            for (int j = 0; j < size * 10; j += 10)
                         {
                             if (index + j > 99 || !playerGrid[index + j].Tag.Equals("water"))
                             {
@@ -190,7 +173,7 @@ namespace Battleship
                     for (int j = 0; j < size * 10; j += 10)
                     {
                         playerGrid[index + j].Tag = ship;
-                        playerGrid[index + j].Tag = Marker.Alive; // dodane
+                        
                         playerGrid[index + j].Background = shipColors[i];
                     }
                 }
@@ -205,50 +188,50 @@ namespace Battleship
                 {
                     element.Stroke = unselected;
                 }
-
             }
-        }
-
-        public void UtilizeState(object state)
-        {
-            throw new NotImplementedException();
         }
 
         private bool checkShips(int index)
         {
-            Grid[,]tab = new Grid[13, 13];
+            string[,] tab = new string[16, 16];
+
+
+            for (int i = 0; i < 16; i++)
+                for (int j = 0; j < 16; j++)
+                    tab[i, j] = "water";
             
-
-            foreach (var element in tab)
-            {
-                element.Tag = "water";
-                element.Background = new SolidColorBrush(Colors.White);
-            }
-            // tu powinno byc podmienienie zeby tab = playerGrid, tylko ze 
-            //trzba zamienic playerGrid tablice jednowymiarowa na tablice wielowymiarowa 10x10
-            // i zeby to bylo w
-
+            int count = 0;
             for (int i = 3; i < 13; i++)
                 for (int j = 3; j < 13; j++)
                 {
-                    tab[i, j] = playerGrid[i];
+                    tab[i, j] = playerGrid[count].Tag.ToString();
+                    count++;
                 }
+
+            int horizontally = 0;
+            int perpendicularly = 0;
+            int counter = 0;
             for (int i = 3; i < 13; i++)
                 for (int j = 3; j < 13; j++)
                 {
-                    if ((string)tab[i - 1, j - 1].Tag && (string)tab[i - 1, j + 1].Tag && (string)tab[i + 1, j - 1].Tag && (string)tab[i + 1, j + 1].Tag == "water";//playerGrid[index].Tag.Equals("water")) ; // funkcja sprawdzajaca rogi obiektu
+                    if (counter == index)
                     {
-                        return false;
+                        horizontally = j;
+                        perpendicularly = i;
+                        break;
                     }
                     else
-                    {
-                        return true;
-                    }
-
+                        counter++;
                 }
+
+            if (tab[perpendicularly + 1, horizontally + 1] == "water" && tab[perpendicularly - 1, horizontally - 1] == "water" && tab[perpendicularly + 1, horizontally - 1] == "water" && tab[perpendicularly - 1, horizontally + 1] == "water" && tab[perpendicularly + 1, horizontally] == "water" && tab[perpendicularly - 1, horizontally] == "water" && tab[perpendicularly, horizontally + 1] == "water" && tab[perpendicularly, horizontally - 1] == "water")//playerGrid[index].Tag.Equals("water")) ; // funkcja sprawdzajaca rogi obiektu
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-
-
-
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Kasper\Desktop\statki\versja 2\Ships\Battleship\App.xaml
-5871989340
+81291496390
 
-13-300251636
+16295334270
 14-1001767708
-MainWindow.xaml;PlayVSComp.xaml;secondSetup.xaml;Setup.xaml;ShipPlacement.xaml;
+MainWindow.xaml;playerVSPlayer.xaml;PlayVSComp.xaml;secondSetup.xaml;Setup.xaml;ShipPlacement.xaml;windowPlayerOne.xaml;windowPlayerTwo.xaml;
 
-True
+False
 

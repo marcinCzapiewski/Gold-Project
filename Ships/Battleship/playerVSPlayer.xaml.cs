@@ -11,46 +11,41 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Battleship
 {
-
-    public partial class PlayVSComp : UserControl
+    /// <summary>
+    /// Logika interakcji dla klasy playerVSPlayer.xaml
+    /// </summary>
+    public partial class playerVSPlayer : UserControl
     {
-        public event EventHandler replay;
-
-        public Difficulty difficulty;
-        public string playerName;
+        
+        public event EventHandler play;
+        private string namePlayer;
         public int highScore;
         public Grid[] playerGrid;
         public Grid[] compGrid;
-        int turnCount = 0;
-        public Random random = new Random();
-        int counterPlayer = 20;
-        int counterComp = 20;
-
-        public PlayVSComp(Difficulty difficulty, Grid[] playerGrid, string playerName)
+        public int lifePlayer = 20;
+       
+        public playerVSPlayer(string name, Grid[] playerGrid,Grid[] enemyGrid)
         {
             InitializeComponent();
-
-            this.playerName = playerName;
-            this.difficulty = difficulty;
-            initiateSetup(playerGrid);
+            this.namePlayer = name;
+             initiateSetup(playerGrid,enemyGrid);
             displayHighScores(loadHighScores());
-
         }
 
-        private void initiateSetup(Grid[] userGrid)
+        private void initiateSetup(Grid[] userGrid, Grid[] enemyGrid)
         {
             compGrid = new Grid[100];
             CompGrid.Children.CopyTo(compGrid, 0);
             for (int i = 0; i < 100; i++)
             {
-                compGrid[i].Tag = "water";
+                compGrid[i].Tag = enemyGrid[i].Tag;
             }
-            setupCompGrid();
+            
+
             playerGrid = new Grid[100];
             PlayerGrid.Children.CopyTo(playerGrid, 0);
 
@@ -62,103 +57,17 @@ namespace Battleship
             btnAttack.IsEnabled = true;
         }
 
-        private void setupCompGrid()
-        {
-            Random random = new Random();
-            int[] shipSizes = new int[] { 1, 1, 1, 1, 2, 2, 2, 3, 3, 4 };
-            string[] ships = new string[]   { "Firstdestroyer","Seconddestroyer", "Thirddestroyer", "Fourthdestroyer",
-                "Firstcruiser", "Secondcruiser", "Thirdcruiser", "Firstsubmarine", "Secondsubmarine", "battleship" };
-            int size, index;
-            string ship;
-            Orientation orientation;
-            bool unavailableIndex = true;
-
-            for (int i = 0; i < shipSizes.Length; i++)
-            {
-                size = shipSizes[i];
-                ship = ships[i];
-                unavailableIndex = true;
-
-                if (random.Next(0, 2) == 0)
-                    orientation = Orientation.Horizontal;
-                else
-                    orientation = Orientation.Vertical;
-
-                if (orientation.Equals(Orientation.Horizontal))
-                {
-                    index = random.Next(0, 100);
-                    while (unavailableIndex == true)
-                    {
-                        unavailableIndex = false;
-
-                        while ((index + size - 1) % 10 < size - 1)
-                        {
-                            index = random.Next(0, 100);
-                        }
-
-                        for (int j = 0; j < size; j++)
-                        {
-                            if (index + j > 99 || !compGrid[index + j].Tag.Equals("water"))
-                            {
-                                index = random.Next(0, 100);
-                                unavailableIndex = true;
-                                break;
-                            }
-                        }
-                    }
-                    for (int j = 0; j < size; j++)
-                    {
-                        compGrid[index + j].Tag = ship;
-
-                    }
-                }
-                else
-                {
-                    index = random.Next(0, 100);
-                    while (unavailableIndex == true)
-                    {
-                        unavailableIndex = false;
-
-                        while (index / 10 + size * 10 > 100)
-                        {
-                            index = random.Next(0, 100);
-                        }
-
-                        for (int j = 0; j < size * 10; j += 10)
-                        {
-                            if (index + j > 99 || !compGrid[index + j].Tag.Equals("water"))
-                            {
-                                index = random.Next(0, 100);
-                                unavailableIndex = true;
-                                break;
-                            }
-                        }
-                    }
-                    for (int j = 0; j < size * 10; j += 10)
-                    {
-                        compGrid[index + j].Tag = ship;
-                    }
-                }
-            }
-        }
-
         private void gridMouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
             Grid square = (Grid)sender;
-
-            if (turnCount % 2 != 0)
-            {
-                return;
-            }
-
-            switch (square.Tag.ToString())
+         
+            switch (square.Tag.ToString()) 
             {
                 case "water":
                     square.Tag = "miss";
                     square.Background = new SolidColorBrush(Colors.LightGray);
-                    turnCount++;
-                    compTurn();
+                    play(this, e);
                     return;
                 case "miss":
                 case "hit":
@@ -166,53 +75,32 @@ namespace Battleship
 
             }
             square.Tag = "hit";
-            counterComp--;
+            lifePlayer--;
             square.Background = new SolidColorBrush(Colors.Red);
-            turnCount++;
-            checkPlayerWin();
-            compTurn();
-
-        }
-
-        private void compTurn()
-        {
-
-            hunterMode();
-            turnCount++;
-            checkComputerWin();
-        }
-
-        private void checkPlayerWin()
-        {
-            if (counterComp == 0)
+                      
+            if (checkWin(lifePlayer) == true)
             {
-                MessageBox.Show("You win!");
+                MessageBox.Show(namePlayer+" you win!");
                 disableGrids();
                 displayHighScores(saveHighScores(true));
+               
             }
+            play(this, e);
+
         }
 
-        private void checkComputerWin()
+        private bool checkWin(int life)
         {
-            if (counterPlayer == 0)
+            if (life == 0)
             {
-                MessageBox.Show("You lose!");
-                disableGrids();
-                displayHighScores(saveHighScores(false));
+                return true;
             }
+            else
+                return false;
         }
 
         private void disableGrids()
-        {
-            foreach (var element in compGrid)
-            {
-                if (element.Tag.Equals("water"))
-                {
-                    element.Background = new SolidColorBrush(Colors.LightGray);
-                }
-
-                element.IsEnabled = false;
-            }
+        {       
             foreach (var element in playerGrid)
             {
                 if (element.Tag.Equals("water"))
@@ -299,7 +187,8 @@ namespace Battleship
             }
             index += int.Parse(Y) - 1;
             clearTextBoxes();
-            gridMouseDown(compGrid[index], null);
+            gridMouseDown(playerGrid[index], null);
+
         }
 
         private void clearTextBoxes()
@@ -307,12 +196,7 @@ namespace Battleship
             txtBoxX.Text = "";
             txtBoxY.Text = "";
         }
-
-        private void btnStartOver_Click(object sender, RoutedEventArgs e)
-        {
-            replay(this, e);
-        }
-
+      
         private void btnLetter_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -323,36 +207,6 @@ namespace Battleship
         {
             Button button = (Button)sender;
             txtBoxY.Text = button.Content.ToString();
-        }
-
-        private void hunterMode()
-        {
-            int position;
-            do
-            {
-                position = random.Next(100);
-                Console.WriteLine(playerGrid[position].Tag);
-                Console.WriteLine("Randomizing position");
-            } while ((playerGrid[position].Tag.Equals("miss")) || (playerGrid[position].Tag.Equals("hit")));
-
-            simpleMode(position);
-
-        }
-
-        private void simpleMode(int position)
-        {
-            if (!(playerGrid[position].Tag.Equals("water")))
-            {
-
-                counterPlayer--;
-                playerGrid[position].Tag = "hit";
-                playerGrid[position].Background = new SolidColorBrush(Colors.Red);
-            }
-            else
-            {
-                playerGrid[position].Tag = "miss";
-                playerGrid[position].Background = new SolidColorBrush(Colors.LightGray);
-            }
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -370,7 +224,7 @@ namespace Battleship
         private List<string> saveHighScores(bool playerWins)
         {
             String filename = @"../../scores.txt";
-            string[] user = { playerName, "0", "0" };
+            string[] user = { namePlayer, "0", "0" };
             string[] playerNames;
             int index;
             int wins = 0;
@@ -390,7 +244,7 @@ namespace Battleship
             {
                 playerNames[index] = players[index].Split(' ')[0];
             }
-            index = binarySearch(playerNames, playerName);
+            index = binarySearch(playerNames, namePlayer);
 
             if (index > -1)
             {
@@ -409,12 +263,11 @@ namespace Battleship
             {
                 losses = int.Parse(user[2]) + 1;
             }
-            players.Insert(index, playerName + " " + wins + " " + losses);
+            players.Insert(index, namePlayer + " " + wins + " " + losses);
 
             File.WriteAllLines(filename, players);
             return players;
         }
-
         private int binarySearch(string[] players, string value)
         {
 
@@ -483,6 +336,6 @@ namespace Battleship
             txtBlockNames.Text = names;
             txtBlockWins.Text = wins;
             txtBlockLosses.Text = losses;
-        }   
+        }
     }
 }

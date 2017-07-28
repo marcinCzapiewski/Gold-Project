@@ -14,13 +14,6 @@ using System.Windows.Shapes;
 
 namespace Battleship
 {
-    /// <summary>
-    /// Logika interakcji dla klasy secondSetup.xaml
-    /// </summary>
-    /// 
-
-
-
     public partial class secondSetup : UserControl
     {
         public event EventHandler playTwo;

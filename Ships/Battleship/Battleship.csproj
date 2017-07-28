@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="playerVSPlayer.xaml.cs">
+      <DependentUpon>playerVSPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlayVSComp.xaml.cs">
       <DependentUpon>PlayVSComp.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,12 @@
     <Compile Include="ShipPlacement.xaml.cs">
       <DependentUpon>ShipPlacement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windowPlayerOne.xaml.cs">
+      <DependentUpon>windowPlayerOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windowPlayerTwo.xaml.cs">
+      <DependentUpon>windowPlayerTwo.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +94,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="playerVSPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PlayVSComp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +111,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShipPlacement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowPlayerOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowPlayerTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
