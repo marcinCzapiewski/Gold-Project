@@ -172,9 +172,18 @@ namespace Battleship
                     }
                     for (int j = 0; j < size * 10; j += 10)
                     {
-                        playerGrid[index + j].Tag = ship;
-                        
-                        playerGrid[index + j].Background = shipColors[i];
+                        if (index + j <= playerGrid.Length - 1)
+                        {
+                            playerGrid[index + j].Tag = ship;
+
+                            playerGrid[index + j].Background = shipColors[i];
+                        }
+                        else
+                        {
+                            playerGrid[index].Tag = ship;
+
+                            playerGrid[index].Background = shipColors[i];
+                        }
                     }
                 }
 
