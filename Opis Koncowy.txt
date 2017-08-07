@@ -1,0 +1,8 @@
+https://www.youtube.com/watch?v=2tpIaZAFgbY&feature=youtu.be
+
+Opis :
+
+W naszym projekcie u¿yliœmy wpf wraz z C#, chcieliœmy zrobiæ grê w statki.
+Za czesc wizualna odpowiadal Marcin Czapiewski, a background zrobili Wojtek Baczynski i Kasper Cisewski.
+Staraliœmy siê zaimplementowaæ MVC. Kod i jego funkcje omówione zosta³y w filmiku. 
+
