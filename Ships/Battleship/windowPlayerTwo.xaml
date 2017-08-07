@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Battleship.windowPlayerTwo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Battleship"
+             mc:Ignorable="d" Height="245.556" Width="303.333">
+    <Grid HorizontalAlignment="Left" Width="303">
+        <Button Content="Next to" HorizontalAlignment="Left" Height="36" Margin="149,198,0,0" VerticalAlignment="Top" Width="126" Background="#9999CC" BorderBrush="#FFC1C0E8" FontWeight="Bold" Foreground="White" FontFamily="TimesNewRoman" FontSize="14.667" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="100" Margin="28,22,0,0" TextWrapping="Wrap" Text="It`s turn Player Two" VerticalAlignment="Top" Width="223"  FontWeight="Bold"  FontFamily="TimesNewRoman" FontSize="40"/>
+    </Grid>
+</UserControl>
+
